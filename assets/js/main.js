@@ -45,25 +45,6 @@ function toggleSkills(){
 skillsHeader.forEach((e)=>{
     e.addEventListener('click',toggleSkills)
 })
-/*==================== QUALIFICATION TABS ====================*/
-const tabs = document.querySelectorAll('[data-target]'),
-      tabContents = document.querySelectorAll('[data-content]')
-
-tabs.forEach(tab => {
-    tab.addEventListener('click',()=>{
-        const target = document.querySelector(tab.dataset.target)
-
-        tabContents.forEach(tabContent => {
-          tabContent.classList.remove('qualification__active')
-        })
-        target.classList.add('qualification__active')
-        
-        tabs.forEach(tab => {
-            tab.classList.remove('qualification__active')
-        })
-        tab.classList.add('qualification__active')
-    })
-})
 
 /*==================== SERVICES MODAL ====================*/
 const modalViews = document.querySelectorAll('.services__modal'),
@@ -151,3 +132,24 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+function onRunDiv() {
+    var v = document.getElementById("onRun");
+    if (v.style.display === "block") {
+       v.style.display = "none";
+    } else {
+       v.style.display = "block";
+    }
+ }
+ function sendMail(params){
+    var tempParams = {
+        from_name:document.getElementById("fromName").value,
+        email1:document.getElementById("email").value,
+        message:document.getElementById("msg").value,
+
+    }
+    emailjs.send('gmail','template_82wsxce','tempParams')
+    .then(function(res){
+        console.log("success",res.status);
+    })
+ }
